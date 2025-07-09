@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BrightnessControlActivity"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <SeekBar
+            android:id="@+id/brightnessControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="50"
+            android:max="100"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/brightnessValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/brightnessControl"
+            android:layout_centerInParent="true"
+            android:text="0.5"
+            android:textSize="22sp"
+            android:textColor="#000000"
+            android:padding="16dp"
+            android:layout_marginTop="20dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnFlashlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/brightnessControl"
+        android:layout_marginTop="20dp"
+        android:text="Go to Flashlight"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:padding="16dp"
+        android:background="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/btnClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnFlashlight"
+        android:layout_marginTop="10dp"
+        android:text="Go to Clock"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:padding="16dp"
+        android:background="@color/colorPrimaryDark" />
+</RelativeLayout>

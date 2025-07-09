@@ -1,0 +1,67 @@
+package com.example.uas_pemrograman_mobile;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import id.edu.unmer.fti.uaspemrogramanmobile.BrightnessControlActivity;
+
+public class ClockActivity extends AppCompatActivity {
+
+    private TextView clockText;
+    private Handler handler = new Handler();
+    private Runnable runnable;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_clock);
+
+        clockText = findViewById(R.id.clockText);
+        Button btnFlashlight = findViewById(R.id.btnFlashlight);
+        Button btnBrightnessControl = findViewById(R.id.btnBrightnessControl);
+
+        updateClock();
+
+        btnFlashlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ClockActivity.this, FlashLightActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnBrightnessControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ClockActivity.this, BrightnessControlActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void updateClock() {
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+                clockText.setText(currentTime);
+                handler.postDelayed(this, 1000);
+            }
+        };
+        handler.post(runnable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+    }
+}
